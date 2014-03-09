@@ -22,7 +22,8 @@ urlpatterns = i18n_patterns("",
 urlpatterns += patterns('',
 
     # Cartridge URLs.
-    ("^shop/", include("cartridge.shop.urls")),
+    #("^shop/", include("cartridge.shop.urls")),
+    ("^", include("cartridge.shop.urls")),
     url("^account/orders/$", "cartridge.shop.views.order_history",
         name="shop_order_history"),
 
@@ -36,7 +37,7 @@ urlpatterns += patterns('',
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    #url("^$", direct_to_template, {"template": "index.html"}, name="home"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
@@ -54,7 +55,7 @@ urlpatterns += patterns('',
     # "/.html" - so for this case, the template "pages/index.html" can
     # be used.
 
-    # url("^$", "mezzanine.pages.views.page", {"slug": "/"}, name="home"),
+    url("^$", "mezzanine.pages.views.page", {"slug": "/"}, name="home"),
 
     # HOMEPAGE FOR A BLOG-ONLY SITE
     # -----------------------------
