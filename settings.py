@@ -326,6 +326,7 @@ INSTALLED_APPS = (
     "mezzanine.accounts",
     #"mezzanine.mobile",
     "mezzanine_instagram_feed",
+    "customshipping",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -425,6 +426,8 @@ SHOP_HANDLER_PAYMENT = "cartridge.shop.payment.stripe_api.process"
 INSTAGRAM_ACCESS_TOKEN = ''
 INSTAGRAM_USER_ID = '466151789'
 INSTAGRAM_MEDIA_COUNT = 50
+
+SHOP_HANDLER_BILLING_SHIPPING = 'customshipping.handler.billship_handler'
 
 ##################
 # LOCAL SETTINGS #
