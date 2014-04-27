@@ -4,6 +4,10 @@
     padding-bottom: 15px;
 }
 
+.connect a img {
+    width: 54px;
+}
+
 .thumbnail .caption {
     padding: 0px;
 }
