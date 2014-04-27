@@ -21,5 +21,4 @@ def has_available_variations(variations):
     """
     Determines if any variation of the product has a price and a quantity in stock.
     """
-    print any([variation.has_price() and variation.num_in_stock for variation in variations])
     return any([variation.has_price() and variation.num_in_stock for variation in variations])
