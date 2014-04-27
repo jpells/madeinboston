@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n future mezzanine_tags keyword_tags disqus_tags staticfiles %}
+
+{% block meta_title %}{% if page %}{{ page.richtextpage.meta_title }}{% else %}{% trans "Events" %}{% endif %}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for page as keywords %}
+{% for keyword in keywords %}
+    {% if not forloop.first %}, {% endif %}
+    {{ keyword }}
+{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ page.description }}
+{% endmetablock %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "mezzanine/css/magnific-popup.css" %}">
+{% endblock extra_css %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static "mezzanine/js/magnific-popup.js" %}"></script>
+<script>
+$(document).ready(function() {
+    $('.gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+            enabled: true,
+        }
+    });
+});
+</script>
+{% endblock %}
+
+{% block title %}
+{% if page %}
+{% editable page.title %}{{ page.title }}{% endeditable %}
+{% else %}
+{% trans "Instagram" %}
+{% endif %}
+{% endblock %}
+
+{% block main %}
+{{ block.super }}
+
+<div class="gallery row">
+{% for media in recent_media %}
+<div class="col-xs-4 col-sm-3">
+    <a class="thumbnail" rel="#image-{{ media.id }}" {% if media.caption %}title="{{ media.caption.text }}"{% endif %} href="{{ media.images.standard_resolution.url }}">
+        <img class="img-responsive" src="{{ media.images.thumbnail.url }}">
+    </a>
+</div>
+{% endfor %}
+</div>
+
+
+{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+{% include "generic/includes/disqus_counts.html" %}
+{% endif %}
+
+{% endblock %}

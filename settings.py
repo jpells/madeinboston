@@ -325,6 +325,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     "mezzanine.accounts",
     #"mezzanine.mobile",
+    "mezzanine_instagram_feed",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -416,6 +417,12 @@ SHOP_OPTION_TYPE_CHOICES = (
     (2, "Colour"),
     (3, "Sex"),
 )
+
+SEARCH_MODEL_CHOICES = []
+
+INSTAGRAM_ACCESS_TOKEN = ''
+INSTAGRAM_USER_ID = '466151789'
+INSTAGRAM_MEDIA_COUNT = 50
 
 ##################
 # LOCAL SETTINGS #
