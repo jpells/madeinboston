@@ -5,6 +5,4 @@ syntax: glob
 .DS_Store
 .coverage
 local_settings.py
-
-syntax: regexp
-^static/
+.thumbnails
