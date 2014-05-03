@@ -325,8 +325,8 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     "mezzanine.accounts",
     #"mezzanine.mobile",
-    "mezzanine_instagram_feed",
     "customshipping",
+    "mezzanine_instagram_gallery",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -386,7 +386,7 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_GRAPPELLI,
 )
 
-DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
+#DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 
 ###################
 # DEPLOY SETTINGS #
@@ -422,10 +422,10 @@ SHOP_OPTION_TYPE_CHOICES = (
 SEARCH_MODEL_CHOICES = []
 
 SHOP_HANDLER_PAYMENT = "cartridge.shop.payment.stripe_api.process"
+STRIPE_API_KEY = ""
 
-INSTAGRAM_ACCESS_TOKEN = ''
-INSTAGRAM_USER_ID = '466151789'
-INSTAGRAM_MEDIA_COUNT = 50
+INSTAGRAM_GALLERIES = [('instagram', 'gallery-type'),]
+INSTAGRAM_FETCH_COUNT = 50
 
 SHOP_HANDLER_BILLING_SHIPPING = 'customshipping.handler.billship_handler'
 

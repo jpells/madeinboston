@@ -3,3 +3,4 @@ Mezzanine==3.0.9
 python-instagram==0.8.0
 reportlab==2.4
 stripe==1.14.0
+git+https://github.com/jpells/mezzanine-instagram-gallery.git#egg=mezzanine_instagram_gallery
