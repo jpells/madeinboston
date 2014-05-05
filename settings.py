@@ -421,13 +421,21 @@ SHOP_OPTION_TYPE_CHOICES = (
 
 SEARCH_MODEL_CHOICES = []
 
-SHOP_HANDLER_PAYMENT = "cartridge.shop.payment.stripe_api.process"
-STRIPE_API_KEY = ""
+#SHOP_HANDLER_PAYMENT = "cartridge.shop.payment.stripe_api.process"
+#STRIPE_API_KEY = ""
+
+SHOP_HANDLER_BILLING_SHIPPING = 'customshipping.handler.billship_handler'
+
+SHOP_CHECKOUT_FORM_CLASS = "customcheckout.forms.MyOrderForm"
+
+#SHOP_HANDLER_PAYMENT = "cartridge.shop.payment.paypal.process"
+SHOP_HANDLER_PAYMENT = "custompayment.paypal.process"
+PAYPAL_USER = ""
+PAYPAL_PASSWORD = ""
+PAYPAL_SIGNATURE = ""
 
 INSTAGRAM_GALLERIES = [('instagram', 'gallery-type'),]
 INSTAGRAM_FETCH_COUNT = 50
-
-SHOP_HANDLER_BILLING_SHIPPING = 'customshipping.handler.billship_handler'
 
 ##################
 # LOCAL SETTINGS #
