@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-from future.builtins import str
 
 try:
     from urllib.request import Request, urlopen
@@ -108,18 +107,29 @@ def process(request, order_form, order):
     trans['transactionData'] = {
         'CREDITCARDTYPE': data['card_type'].upper(),
         'ACCT': data['card_number'].replace(' ', ''),
-        #'EXPDATE': (data['card_expiry_month'] + data['card_expiry_year']),
-        'EXPDATE': "%s%s" % (data['card_expiry_month'], data['card_expiry_year']),
+        'EXPDATE': str(data['card_expiry_month'] + data['card_expiry_year']),
         'CVV2': data['card_ccv'],
         'AMT': trans['amount'],
-        'INVNUM': str(order.id)
+        'INVNUM': str(order.id),
+        'ITEMAMT': order.item_total,
+        'SHIPPINGAMT': order.shipping_total,
+        #'TAXAMT': order.tax_total,
     }
+    trans['lineItemData'] = {}
+    for i in range(len(order.items.all())):
+        trans['lineItemData']['L_NAME%d' % i] = order.items.all()[i].description
+        trans['lineItemData']['L_DESC%d' % i] = order.items.all()[i].description
+        trans['lineItemData']['L_AMT%d' % i] = order.items.all()[i].unit_price
+        trans['lineItemData']['L_NUMBER%d' % i] = order.items.all()[i].sku
+        trans['lineItemData']['L_QTY%d' % i] = order.items.all()[i].quantity
+        #trans['lineItemData']['L_TAXAMT%d' % i] = 0
 
     part1 = urlencode(trans['configuration']) + "&"
     part2 = "&" + urlencode(trans['custBillData'])
     part3 = "&" + urlencode(trans['custShipData'])
+    part4 = "&" + urlencode(trans['lineItemData'])
     trans['postString'] = (part1 + urlencode(trans['transactionData']) +
-                           part2 + part3)
+                           part2 + part3 + part4)
     request_args = {"url": trans['connection'], "data": trans['postString']}
     # useful for debugging transactions
     # print trans['postString']
