@@ -20,8 +20,8 @@ def billship_handler(request, order_form):
     if not request.session.get("free_shipping"):
         settings.use_editable()
         if order_form.cleaned_data['shipping_detail_country'].lower() in ['united states', 'usa', 'us',]:
-            set_shipping(request, _("USA shipping"),
+            set_shipping(request, _("Shipping"),
                 settings.SHOP_DEFAULT_SHIPPING_VALUE)
         else:
-            set_shipping(request, _("Foreign shipping"),
+            set_shipping(request, _("Shipping"),
                 settings.SHOP_FOREIGN_SHIPPING_VALUE)
