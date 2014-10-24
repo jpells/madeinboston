@@ -6,3 +6,4 @@ syntax: glob
 .coverage
 local_settings.py
 .thumbnails
+.idea
